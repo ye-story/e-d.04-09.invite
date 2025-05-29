@@ -227,7 +227,7 @@ main {
   align-items: center;
   width: 200px;
   overflow: hidden;
-  max-width: calc(75vw - 110px);
+  max-width: calc(75vw - 120px);
   text-align: justify;
   white-space: nowrap;
 }
