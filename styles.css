@@ -1,13 +1,11 @@
 @font-face {
-  font-family: 'DryhtenRegular';
-  src: local('DryhtenRegular'),
-    url('./fonts/DryhtenRegular.otf') format('opentype');
+  font-family: 'Philosopher';
+  src: url('/assets/Philosopher-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Оптимизация загрузки */
 }
 
-@font-face {
-  font-family: 'Sylfaen';
-  src: local('Sylfaen'), url('./fonts/sylfaen.ttf') format('truetype');
-}
 
 * {
   box-sizing: border-box;
@@ -25,6 +23,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-x: hidden;
+
+  font-family: 'Philosopher', serif;
 }
 
 body::-webkit-scrollbar {
@@ -64,43 +64,7 @@ main {
   position: relative;
 }
 
-.invited-names {
-  position: absolute;
-  left: 0;
-  top: 12%;
-  width: 100%;
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 600;
 
-  font-family: 'DryhtenRegular';
-}
-
-.invited-text {
-  position: absolute;
-  left: 0;
-  top: 21%;
-  width: 100%;
-  text-align: center;
-  font-size: 0.7rem;
-  font-weight: 500;
-  line-height: 0.7rem;
-
-  font-family: 'Sylfaen';
-}
-
-.invited-message {
-  position: absolute;
-  left: 26%;
-  top: 57.8%;
-  width: 61%;
-  text-align: left;
-  font-size: 0.77rem;
-  font-weight: 500;
-  line-height: 0.9rem;
-
-  font-family: 'Sylfaen';
-}
 
 .invited-message p {
   margin-bottom: 0.7rem;
@@ -152,4 +116,106 @@ main {
     margin: 0 auto;
     width: 300px;
   }
+}
+
+.locker {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  background-color: rgb(13 13 13 / 62%);
+
+  display: flex;
+
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 220px;
+
+  color: white;
+  font-weight: 500;
+  font-size: 32px;
+  text-align: center;
+  text-shadow: 2px 1px 20px #0000009e;
+}
+
+.locker .locker__container {
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.locker .locker__track {
+  position: relative;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 360px;
+  max-width: 90vw;
+
+  
+}
+
+.locker .locker__track_arrow {
+  box-sizing: content-box;
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: inline-flex;
+  flex-shrink: 0;
+
+  width: 46px;
+  height: 46px;
+
+  background-image: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="39" y="1" width="38" height="38" rx="19" transform="rotate(90 39 1)" stroke="white" stroke-width="2"/><path d="M15.3242 29.8438C15.1563 29.8438 14.9844 29.7773 14.8555 29.6484C14.5977 29.3906 14.5977 28.9688 14.8555 28.7109L23.6797 19.8867L14.9844 11.1914C14.7266 10.9336 14.7266 10.5117 14.9844 10.2539C15.2422 9.99609 15.6641 9.99609 15.9219 10.2539L25.0898 19.418C25.3477 19.6758 25.3477 20.0977 25.0898 20.3555L15.7969 29.6484C15.6641 29.7812 15.4961 29.8438 15.3242 29.8438Z" fill="white"/></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  cursor: pointer;
+  transition: 0.6s ease-out;
+
+  /* Анимация пульсации */
+  animation:
+          pulse 2s infinite ease-in-out;
+}
+
+/* Анимация пульсации */
+@keyframes pulse {
+  0%, 100% { transform: translateY(-50%) translateX(2px) scale(1); }
+  50% { transform: translateY(-50%) translateX(0) scale(1.1); }
+}
+
+/* При клике анимация останавливается */
+.locker__track_arrow.active {
+  animation: none;
+}
+
+.locker .locker__track_round {
+  box-sizing: content-box;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
+  border: 2px solid white;
+
 }

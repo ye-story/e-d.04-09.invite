@@ -1,64 +1,90 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta content="true" name="HandheldFriendly" />
-    <meta content="width" name="MobileOptimized" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta property="og:image" content="/img/preview.webp" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta content="true" name="HandheldFriendly"/>
+    <meta content="width" name="MobileOptimized"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta property="og:image" content="/img/preview.webp"/>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Свадебное приглашение Даниил и Екатерина!" />
-    <meta property="og:image" content="https://ye-story.github.io/e-d.04-09.invite/img/preview.webp" />
-    <meta property="og:site_name" content="E & D" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Свадебное приглашение Даниил и Екатерина!"/>
+    <meta property="og:image" content="https://ye-story.github.io/e-d.04-09.invite/img/preview.webp"/>
+    <meta property="og:site_name" content="E & D"/>
     <meta
-      property="og:description"
-      content="Свадебное приглашение Даниил и Екатерина!"
+            property="og:description"
+            content="Свадебное приглашение Даниил и Екатерина!"
     />
 
-    <meta property="og:url" content="https://ye-story.github.io/e-d.04-09.invite/" />
+    <meta property="og:url" content="https://ye-story.github.io/e-d.04-09.invite/"/>
 
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
     <title>E & D</title>
-  </head>
+</head>
 
-  <body>
-    
+<body>
 
-    <main>
-      <div class="img-wrapper">
-        <img src="" alt="" id="img1" />
-      </div>      
-      <img src="./assets/scroll-down-mouse-white.gif" class="scroll-img" />
-    </main>
-    
-    <script src="script.js?1001"></script>
+
+<main>
+    <div class="img-wrapper">
+        <img src="" alt="" id="img1"/>
+
+        <div class="locker" id="locker">
+
+            <div class="locker__container">
+                <p>Разблокируйте<br>приглашение</p>
+                <div class="locker__track">
+                    <div class="locker__track_arrow" id="arrow"></div>
+                    <div class="locker__track_round" id="round"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--<img src="./assets/scroll-down-mouse-white.gif" class="scroll-img" />-->
+</main>
+
+<script src="script.js?1001"></script>
 
 <script>
- const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let soundBuffer;
+  const locker = document.getElementById('locker');
+  const arrow = document.getElementById('arrow');
+  const round = document.getElementById('round');
+  const imgWrapper = document.querySelector('.img-wrapper');
 
-// Загрузка аудио
-fetch("assets/sound.mp3")
-  .then(response => response.arrayBuffer())
-  .then(data => audioContext.decodeAudioData(data))
-  .then(buffer => {
-    soundBuffer = buffer;
-    document.addEventListener("click", playSound);    
+  const track = document.querySelector('.locker__track');
+
+  arrow.addEventListener('click', (e) => {
+    arrow.classList.add('active');
+
+    arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
+
+     setTimeout(() => {
+       round.append(arrow);
+       arrow.style.position = 'static';
+       arrow.style.transform = 'none';
+
+       setTimeout(() => {
+         locker.remove();
+
+         const imgScroll = new Image();
+         imgScroll.className = 'scroll-img';
+         imgScroll.src = './assets/scroll-down-mouse-white.gif';
+         imgWrapper.insertAdjacentElement('afterend', imgScroll);
+
+         const audio = new Audio('assets/sound.mp3');
+         audio.loop = true;
+         audio.play().catch((e) => {
+           console.error('Ошибка воспроизведения:', e);
+         });
+
+       }, 200);
+     }, 800);
+
+
   });
-
-function playSound() {
-  const source = audioContext.createBufferSource();
-  source.buffer = soundBuffer;
-  source.loop = true;
-  source.connect(audioContext.destination);
-  source.start();
-}
-
-
 </script>
-   
-    
 
-  </body>
+
+</body>
 </html>
