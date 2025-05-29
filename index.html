@@ -22,7 +22,7 @@
     <title>E & D</title>
 </head>
 
-<body>
+<body style="overflow: hidden">
 
 
 <main>
@@ -66,6 +66,7 @@
 
        setTimeout(() => {
          locker.remove();
+         document.body.style.overflow = '';
 
          const imgScroll = new Image();
          imgScroll.className = 'scroll-img';
