@@ -78,6 +78,17 @@
            console.error('Ошибка воспроизведения:', e);
          });
 
+         document.addEventListener('visibilitychange', (e) => {
+
+           if (document.visibilityState === "hidden") {
+             audio.pause();
+           } else {
+             audio.play().catch((e) => {
+               console.error('Ошибка воспроизведения:', e);
+             });
+           }
+         });
+
        }, 200);
      }, 800);
 
