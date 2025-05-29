@@ -53,6 +53,10 @@
   const imgWrapper = document.querySelector('.img-wrapper');
 
   const track = document.querySelector('.locker__track');
+
+  const audio = new Audio('assets/sound.mp3');
+  audio.loop = true;
+
   const arrowClick = (e) => {
     arrow.classList.add('active');
 
@@ -72,8 +76,7 @@
         imgScroll.src = './assets/scroll-down-mouse-white.gif';
         imgWrapper.insertAdjacentElement('afterend', imgScroll);
 
-        const audio = new Audio('assets/sound.mp3');
-        audio.loop = true;
+
         audio.play().catch((e) => {
           console.error('Ошибка воспроизведения:', e);
         });
@@ -95,7 +98,8 @@
 
   };
   arrow.addEventListener('click', arrowClick);
-  arrow.addEventListener('touchstart', arrowClick);
+ // arrow.addEventListener('touchstart', arrowClick);
+
 </script>
 
 
