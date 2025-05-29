@@ -136,7 +136,7 @@ main {
 
   color: white;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
   text-shadow: 2px 1px 20px #0000009e;
 }
@@ -227,10 +227,11 @@ main {
   align-items: center;
   width: 200px;
   overflow: hidden;
-  max-width: 60vw;
+  max-width: calc(75vw - 110px);
   text-align: justify;
   white-space: nowrap;
 }
+
 .locker .locker__track_dots span {
   font-size: 26px;
 }
