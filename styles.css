@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Philosopher';
-  src: url('/assets/Philosopher-Regular.ttf') format('truetype');
+  src: url('./assets/Philosopher-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap; /* Оптимизация загрузки */
@@ -156,7 +156,7 @@ main {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 360px;
   max-width: 75vw;
 }
@@ -175,7 +175,7 @@ main {
   width: 46px;
   height: 46px;
 
-  background-image: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="39" y="1" width="38" height="38" rx="19" transform="rotate(90 39 1)" stroke="white" stroke-width="2"/><path d="M15.3242 29.8438C15.1563 29.8438 14.9844 29.7773 14.8555 29.6484C14.5977 29.3906 14.5977 28.9688 14.8555 28.7109L23.6797 19.8867L14.9844 11.1914C14.7266 10.9336 14.7266 10.5117 14.9844 10.2539C15.2422 9.99609 15.6641 9.99609 15.9219 10.2539L25.0898 19.418C25.3477 19.6758 25.3477 20.0977 25.0898 20.3555L15.7969 29.6484C15.6641 29.7812 15.4961 29.8438 15.3242 29.8438Z" fill="white"/></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Слой_1" x="0px" y="0px" viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve"><style type="text/css">.st0{fill:%23FFFFFF;}</style><path class="st0" d="M39,20L39,20c0,10.5-8.5,19-19,19l0,0C9.5,39,1,30.5,1,20l0,0C1,9.5,9.5,1,20,1l0,0C30.5,1,39,9.5,39,20z"/><path d="M16.6,28.7c-0.1,0-0.3-0.1-0.4-0.2c-0.2-0.2-0.2-0.6,0-0.8l7.4-7.8l-7.3-7.6c-0.2-0.2-0.2-0.6,0-0.8c0.2-0.2,0.6-0.2,0.8,0 l7.7,8.1c0.2,0.2,0.2,0.6,0,0.8L17,28.5C16.9,28.6,16.8,28.7,16.6,28.7z"/></svg>');
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -219,4 +219,42 @@ main {
   border-radius: 50%;
   border: 2px solid white;
 
+}
+
+.locker .locker__track_dots {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  overflow: hidden;
+  max-width: 60vw;
+  text-align: justify;
+  white-space: nowrap;
+}
+.locker .locker__track_dots span {
+  font-size: 26px;
+}
+.locker .locker__track_dots span:nth-of-type(1) {
+  color: rgba(255, 255, 255, 0.60);
+
+}
+
+.locker .locker__track_dots span:nth-child(2) {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.locker .locker__track_dots span:nth-child(3) {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 30px;
+
+}
+
+.locker .locker__track_dots span:nth-child(4) {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 32px;
+}
+
+.locker .locker__track_dots span:nth-child(5) {
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 34px;
 }

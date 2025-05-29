@@ -35,6 +35,14 @@
                 <p>Разблокируйте<br>приглашение</p>
                 <div class="locker__track">
                     <div class="locker__track_arrow" id="arrow"></div>
+                    <div class="locker__track_dots">
+                        <span>·</span>
+                        <span>·</span>
+                        <span>·</span>
+                        <span>·</span>
+                        <span>·</span>
+                        <span>·</span>
+                    </div>
                     <div class="locker__track_round" id="round"></div>
                 </div>
 
@@ -71,10 +79,10 @@
         locker.remove();
         document.body.style.overflow = '';
 
-        const imgScroll = new Image();
+       /* const imgScroll = new Image();
         imgScroll.className = 'scroll-img';
         imgScroll.src = './assets/scroll-down-mouse-white.gif';
-        imgWrapper.insertAdjacentElement('afterend', imgScroll);
+        imgWrapper.insertAdjacentElement('afterend', imgScroll);*/
 
 
         audio.play().catch((e) => {
