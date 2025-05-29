@@ -53,48 +53,49 @@
   const imgWrapper = document.querySelector('.img-wrapper');
 
   const track = document.querySelector('.locker__track');
-
-  arrow.addEventListener('click', (e) => {
+  const arrowClick = (e) => {
     arrow.classList.add('active');
 
     arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
 
-     setTimeout(() => {
-       round.append(arrow);
-       arrow.style.position = 'static';
-       arrow.style.transform = 'none';
+    setTimeout(() => {
+      round.append(arrow);
+      arrow.style.position = 'static';
+      arrow.style.transform = 'none';
 
-       setTimeout(() => {
-         locker.remove();
-         document.body.style.overflow = '';
+      setTimeout(() => {
+        locker.remove();
+        document.body.style.overflow = '';
 
-         const imgScroll = new Image();
-         imgScroll.className = 'scroll-img';
-         imgScroll.src = './assets/scroll-down-mouse-white.gif';
-         imgWrapper.insertAdjacentElement('afterend', imgScroll);
+        const imgScroll = new Image();
+        imgScroll.className = 'scroll-img';
+        imgScroll.src = './assets/scroll-down-mouse-white.gif';
+        imgWrapper.insertAdjacentElement('afterend', imgScroll);
 
-         const audio = new Audio('assets/sound.mp3');
-         audio.loop = true;
-         audio.play().catch((e) => {
-           console.error('Ошибка воспроизведения:', e);
-         });
+        const audio = new Audio('assets/sound.mp3');
+        audio.loop = true;
+        audio.play().catch((e) => {
+          console.error('Ошибка воспроизведения:', e);
+        });
 
-         document.addEventListener('visibilitychange', (e) => {
+        document.addEventListener('visibilitychange', (e) => {
 
-           if (document.visibilityState === "hidden") {
-             audio.pause();
-           } else {
-             audio.play().catch((e) => {
-               console.error('Ошибка воспроизведения:', e);
-             });
-           }
-         });
+          if (document.visibilityState === "hidden") {
+            audio.pause();
+          } else {
+            audio.play().catch((e) => {
+              console.error('Ошибка воспроизведения:', e);
+            });
+          }
+        });
 
-       }, 200);
-     }, 800);
+      }, 200);
+    }, 800);
 
 
-  });
+  };
+  arrow.addEventListener('click', arrowClick);
+  arrow.addEventListener('touchstart', arrowClick);
 </script>
 
 
