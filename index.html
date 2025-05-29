@@ -34,28 +34,31 @@
     
     <script src="script.js?1001"></script>
 
-  <!-- Кнопка активации -->
-  <button id="start-btn" style="display: none;"></button>
+<script>
+ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let soundBuffer;
 
-  <!-- Аудио -->
-  <audio id="hidden-audio" src="assets/sound.mp3" loop style="display: none;"></audio>
+// Загрузка аудио
+fetch("assets/sound.mp3")
+  .then(response => response.arrayBuffer())
+  .then(data => audioContext.decodeAudioData(data))
+  .then(buffer => {
+    soundBuffer = buffer;
+    document.addEventListener("click", playSound);    
+  });
 
-  <script>
-    const btn = document.getElementById('start-btn');
-    const audio = document.getElementById('hidden-audio');
+function playSound() {
+  const source = audioContext.createBufferSource();
+  source.buffer = soundBuffer;
+  source.loop = true;
+  source.connect(audioContext.destination);
+  source.start();
+}
 
-    btn.addEventListener('click', () => {
-      audio.play()
-        .then(() => {
-          btn.remove(); // Скрыть кнопку после запуска
-        })
-        .catch(err => {
-          console.log("Ошибка воспроизведения:", err);
-        });
-    });
 
-    btn.click();
-  </script>
+</script>
+   
+    
 
   </body>
 </html>
