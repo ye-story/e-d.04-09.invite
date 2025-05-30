@@ -92,8 +92,8 @@
     }
     const arrowClick = (e) => {
 
-       /* if (isAudioStarted) return;
-        isAudioStarted = true;*/
+        if (isAudioStarted) return;
+        isAudioStarted = true;
 
         arrow.classList.add('active');
 
@@ -130,22 +130,16 @@
     };
     arrow.addEventListener('click', arrowClick);
 
-    if (isIOS()) {
-        arrow.addEventListener('touchstart', arrowClick);
-        arrow.addEventListener('pointerdown', arrowClick);
-    } else {
-        arrow.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            arrowClick();
+    arrow.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        arrowClick();
 
-        }, {passive: false});
+    }, {passive: false});
 
-        arrow.addEventListener('pointerdown', (e) => {
-            e.preventDefault();
-            arrowClick();
-        }, {passive: false});
-    }
-
+    arrow.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        arrowClick();
+    }, {passive: false});
 
 
 
