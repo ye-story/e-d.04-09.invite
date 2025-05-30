@@ -90,10 +90,8 @@
         const isMacWithTouch = navigator.userAgent.includes("Mac") && "ontouchend" in document;
         return isAppleDevice || isMacWithTouch;
     }
-
-    isIOS() && alert('Это айфон')
-
     const arrowClick = (e) => {
+        console.log(e)
         if (isAudioStarted) return;
         isAudioStarted = true;
 
