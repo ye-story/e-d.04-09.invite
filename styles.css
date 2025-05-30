@@ -187,7 +187,8 @@ main {
           pulse 2s infinite ease-in-out;
 
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  touch-action: manipulation; /* Улучшает обработку касаний */
+  user-select: none; /* Предотвращает выделение при касании */
 }
 
 /* Анимация пульсации */

@@ -55,57 +55,69 @@
 <script src="script.js?1001"></script>
 
 <script>
-  const locker = document.getElementById('locker');
-  const arrow = document.getElementById('arrow');
-  const round = document.getElementById('round');
-  const imgWrapper = document.querySelector('.img-wrapper');
+    const locker = document.getElementById('locker');
+    const arrow = document.getElementById('arrow');
+    const round = document.getElementById('round');
+    const imgWrapper = document.querySelector('.img-wrapper');
 
-  const track = document.querySelector('.locker__track');
+    const track = document.querySelector('.locker__track');
 
-  const audio = new Audio('assets/sound.mp3');
-  audio.loop = true;
+    const audio = new Audio('assets/sound.mp3');
+    audio.loop = true;
+    audio.load();
 
-  const arrowClick = (e) => {
-    arrow.classList.add('active');
+    let isAudioStarted = false;
 
-    arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
+    const arrowClick = (e) => {
+        if (isAudioStarted) return;
+        isAudioStarted = true;
 
-    setTimeout(() => {
-      round.append(arrow);
-      arrow.style.position = 'static';
-      arrow.style.transform = 'none';
+        arrow.classList.add('active');
 
-      setTimeout(() => {
-        locker.remove();
-        document.body.style.overflow = '';
+        arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
 
-       /* const imgScroll = new Image();
-        imgScroll.className = 'scroll-img';
-        imgScroll.src = './assets/scroll-down-mouse-white.gif';
-        imgWrapper.insertAdjacentElement('afterend', imgScroll);*/
+        setTimeout(() => {
+            round.append(arrow);
+            arrow.style.position = 'static';
+            arrow.style.transform = 'none';
 
 
-        audio.play().catch((e) => {
-          console.error('Ошибка воспроизведения:', e);
-        });
+            setTimeout(() => {
+                locker.remove();
+                document.body.style.overflow = '';
 
-        document.addEventListener('visibilitychange', (e) => {
+                audio.play().catch((e) => {
+                    console.error('Ошибка воспроизведения:', e);
+                });
 
-          if (document.visibilityState === "hidden") {
-            audio.pause();
-          } else {
-            audio.play().catch((e) => {
-              console.error('Ошибка воспроизведения:', e);
-            });
-          }
-        });
-      }, 200);
-    }, 800);
+                document.addEventListener('visibilitychange', (e) => {
+
+                    if (document.visibilityState === "hidden") {
+                        audio.pause();
+                    } else {
+                        audio.play().catch((e) => {
+                            console.error('Ошибка воспроизведения:', e);
+                        });
+                    }
+                });
+            }, 200);
+        }, 800);
 
 
-  };
-  arrow.addEventListener('click', arrowClick);
-  arrow.addEventListener('touchstart', arrowClick);
+    };
+    arrow.addEventListener('click', arrowClick);
+
+    arrow.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        arrowClick();
+
+    }, {passive: false});
+
+    arrow.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        arrowClick();
+    }, {passive: false});
+
 
 </script>
 
