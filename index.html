@@ -91,7 +91,7 @@
         return isAppleDevice || isMacWithTouch;
     }
     const arrowClick = (e) => {
-        console.log(e)
+
         if (isAudioStarted) return;
         isAudioStarted = true;
 
@@ -131,7 +131,7 @@
     };
     arrow.addEventListener('click', arrowClick);
 
-    if (isIOS) {
+    if (isIOS()) {
         arrow.addEventListener('touchstart', arrowClick);
         arrow.addEventListener('pointerdown', arrowClick);
     } else {
