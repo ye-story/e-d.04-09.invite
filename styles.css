@@ -234,29 +234,42 @@ main {
 }
 
 .locker .locker__track_dots span {
+  border-radius: 50%;
   font-size: 26px;
+  flex-shrink: 0;
 }
 .locker .locker__track_dots span:nth-of-type(1) {
-  color: rgba(255, 255, 255, 0.60);
-
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.60);
 }
 
 .locker .locker__track_dots span:nth-child(2) {
-  color: rgba(255, 255, 255, 0.65);
+  width: 3px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.65);
 }
 
 .locker .locker__track_dots span:nth-child(3) {
-  color: rgba(255, 255, 255, 0.70);
-  font-size: 30px;
-
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.70);
 }
 
 .locker .locker__track_dots span:nth-child(4) {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 32px;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.80);
 }
 
 .locker .locker__track_dots span:nth-child(5) {
-  color: rgba(255, 255, 255, 0.80);
-  font-size: 34px;
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.locker .locker__track_dots span:nth-child(6) {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.95);
 }
