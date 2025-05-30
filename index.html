@@ -68,6 +68,23 @@
 
     let isAudioStarted = false;
 
+    const hideDots = (time = 600) => {
+        const dots = [...document.querySelectorAll('.locker__track_dots span')];
+
+        const delay = Math.floor(time/dots.length);
+        let timeDelay = 0;
+
+        dots.forEach(dot => {
+            console.log(timeDelay)
+
+            setTimeout(()=> {
+                dot.style.opacity = '0';
+            }, timeDelay);
+
+            timeDelay += delay;
+        });
+    }
+
     const arrowClick = (e) => {
         if (isAudioStarted) return;
         isAudioStarted = true;
@@ -75,6 +92,7 @@
         arrow.classList.add('active');
 
         arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
+        hideDots();
 
         setTimeout(() => {
             round.append(arrow);
