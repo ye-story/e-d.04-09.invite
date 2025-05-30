@@ -131,8 +131,7 @@ main {
 
   gap: 30px;
   justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 220px;
+  align-items: center;
 
   color: white;
   font-weight: 500;
@@ -142,134 +141,47 @@ main {
 }
 
 .locker .locker__container {
-
   display: flex;
   flex-direction: column;
   gap: 30px;
   justify-content: center;
   align-items: center;
-}
 
-.locker .locker__track {
-  position: relative;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 360px;
-  max-width: 75vw;
+  max-width: 70vw;
 }
 
-.locker .locker__track_arrow {
-  box-sizing: content-box;
+.locker img {
+  width: 100%;
+  height: 100%;
 
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  object-fit: contain;
 
-  display: inline-flex;
-  flex-shrink: 0;
+  animation: smooth-pulse-rock 2s linear infinite;
+  transform-origin: center; /* Вращение вокруг центра */
 
-  width: 46px;
-  height: 46px;
-
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Слой_1" x="0px" y="0px" viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve"><style type="text/css">.st0{fill:%23FFFFFF;}</style><path class="st0" d="M39,20L39,20c0,10.5-8.5,19-19,19l0,0C9.5,39,1,30.5,1,20l0,0C1,9.5,9.5,1,20,1l0,0C30.5,1,39,9.5,39,20z"/><path d="M16.6,28.7c-0.1,0-0.3-0.1-0.4-0.2c-0.2-0.2-0.2-0.6,0-0.8l7.4-7.8l-7.3-7.6c-0.2-0.2-0.2-0.6,0-0.8c0.2-0.2,0.6-0.2,0.8,0 l7.7,8.1c0.2,0.2,0.2,0.6,0,0.8L17,28.5C16.9,28.6,16.8,28.7,16.6,28.7z"/></svg>');
-  background-repeat: no-repeat;
-  background-size: contain;
+  user-select: none;
 
   cursor: pointer;
-  transition: 0.6s ease-out;
-
-  /* Анимация пульсации */
-  animation:
-          pulse 2s infinite ease-in-out;
-
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation; /* Улучшает обработку касаний */
-  user-select: none; /* Предотвращает выделение при касании */
 }
 
 /* Анимация пульсации */
 @keyframes pulse {
-  0%, 100% { transform: translateY(-50%) translateX(2px) scale(1); }
-  50% { transform: translateY(-50%) translateX(0) scale(1.1); }
+  0%, 100% { transform: translateX(2px) scale(1); }
+  50% { transform: translateX(0) scale(1.1); }
 }
 
-/* При клике анимация останавливается */
-.locker__track_arrow.active {
-  animation: none;
-}
-
-.locker .locker__track_round {
-  box-sizing: content-box;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  width: 56px;
-  height: 56px;
-
-  border-radius: 50%;
-  border: 2px solid white;
-
-}
-
-.locker .locker__track_dots {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 200px;
-  overflow: hidden;
-  max-width: calc(75vw - 120px);
-  text-align: justify;
-  white-space: nowrap;
-}
-
-.locker .locker__track_dots span {
-  border-radius: 50%;
-  font-size: 26px;
-  flex-shrink: 0;
-}
-.locker .locker__track_dots span:nth-of-type(1) {
-  width: 2px;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.60);
-}
-
-.locker .locker__track_dots span:nth-child(2) {
-  width: 3px;
-  height: 3px;
-  background-color: rgba(255, 255, 255, 0.65);
-}
-
-.locker .locker__track_dots span:nth-child(3) {
-  width: 4px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.70);
-}
-
-.locker .locker__track_dots span:nth-child(4) {
-  width: 4px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.80);
-}
-
-.locker .locker__track_dots span:nth-child(5) {
-  width: 5px;
-  height: 5px;
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.locker .locker__track_dots span:nth-child(6) {
-  width: 6px;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.95);
+@keyframes smooth-pulse-rock {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.03) rotate(1deg); /* Меньше вращения */
+  }
+  50% {
+    transform: scale(1.06) rotate(0deg); /* Плавный возврат */
+  }
+  75% {
+    transform: scale(1.03) rotate(-1deg); /* Меньше вращения */
+  }
 }

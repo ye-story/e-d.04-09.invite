@@ -32,116 +32,43 @@
         <div class="locker" id="locker">
 
             <div class="locker__container">
-                <p>Разблокируйте<br>приглашение</p>
-                <div class="locker__track">
-                    <div class="locker__track_arrow" id="arrow"></div>
-                    <div class="locker__track_dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="locker__track_round" id="round"></div>
-                </div>
-
+                <img src="./img/locker.svg" alt="разблокировать приглашение">
             </div>
+
         </div>
     </div>
-    <!--<img src="./assets/scroll-down-mouse-white.gif" class="scroll-img" />-->
+
 </main>
 
 <script src="script.js?1001"></script>
 
 <script>
     const locker = document.getElementById('locker');
-    const arrow = document.getElementById('arrow');
-    const round = document.getElementById('round');
-    const imgWrapper = document.querySelector('.img-wrapper');
-
-    const track = document.querySelector('.locker__track');
 
     const audio = new Audio('assets/sound.mp3');
     audio.loop = true;
     audio.load();
 
-    let isAudioStarted = false;
+    locker.addEventListener('click', () => {
+        locker.remove();
+        document.body.style.overflow = '';
 
-    const hideDots = (time = 600) => {
-        const dots = [...document.querySelectorAll('.locker__track_dots span')];
-
-        const delay = Math.floor(time/dots.length);
-        let timeDelay = 0;
-
-        dots.forEach(dot => {
-            console.log(timeDelay)
-
-            setTimeout(()=> {
-                dot.style.opacity = '0';
-            }, timeDelay);
-
-            timeDelay += delay;
+        audio.play().catch((e) => {
+            console.error('Ошибка воспроизведения:', e);
         });
-    }
 
-    function isIOS() {
-        const isAppleDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        const isMacWithTouch = navigator.userAgent.includes("Mac") && "ontouchend" in document;
-        return isAppleDevice || isMacWithTouch;
-    }
-    const arrowClick = (e) => {
+    });
 
-        if (isAudioStarted) return;
-        isAudioStarted = true;
+    document.addEventListener('visibilitychange', (e) => {
 
-        arrow.classList.add('active');
-
-        arrow.style.left = (track.clientWidth - arrow.clientWidth - (round.clientWidth - arrow.clientWidth) / 2 - 1) + 'px';
-        hideDots();
-
-        setTimeout(() => {
-            round.append(arrow);
-            arrow.style.position = 'static';
-            arrow.style.transform = 'none';
-
-            setTimeout(() => {
-                locker.remove();
-                document.body.style.overflow = '';
-
-                audio.play().catch((e) => {
-                    console.error('Ошибка воспроизведения:', e);
-                });
-
-                document.addEventListener('visibilitychange', (e) => {
-
-                    if (document.visibilityState === "hidden") {
-                        audio.pause();
-                    } else {
-                        audio.play().catch((e) => {
-                            console.error('Ошибка воспроизведения:', e);
-                        });
-                    }
-                });
-            }, 200);
-        }, 800);
-
-
-    };
-    arrow.addEventListener('click', arrowClick);
-
-    arrow.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        arrowClick();
-
-    }, {passive: false});
-
-    arrow.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        arrowClick();
-    }, {passive: false});
-
-
+        if (document.visibilityState === "hidden") {
+            audio.pause();
+        } else {
+            audio.play().catch((e) => {
+                console.error('Ошибка воспроизведения:', e);
+            });
+        }
+    });
 
 </script>
 
