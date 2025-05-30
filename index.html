@@ -92,8 +92,8 @@
     }
     const arrowClick = (e) => {
 
-        if (isAudioStarted) return;
-        isAudioStarted = true;
+       /* if (isAudioStarted) return;
+        isAudioStarted = true;*/
 
         arrow.classList.add('active');
 
@@ -104,7 +104,6 @@
             round.append(arrow);
             arrow.style.position = 'static';
             arrow.style.transform = 'none';
-
 
             setTimeout(() => {
                 locker.remove();
@@ -145,7 +144,6 @@
             e.preventDefault();
             arrowClick();
         }, {passive: false});
-
     }
 
 
